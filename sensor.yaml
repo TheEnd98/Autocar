@@ -1,0 +1,5 @@
+- 
+  platform: "mqtt" 
+  name: "sensor auto car"
+  state_topic: "zigbee2mqtt/0x00124b00246df48b"
+  value_template: "{{ value_json.available }}"

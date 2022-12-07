@@ -1,15 +1,15 @@
 blueprint:
-  name: autocar
-  description: ban moi 14.11.2022
+  name: Định vị ô tô thông minh
+  description: Tự động phát hiện ô tô về nhà và mở cửa. Module định vị ô tô là module định vị ô tô đã mua từ JAVIS
   domain: automation
   input:
-    switch_entity1:
-      name: Switch auto
+    sensor_entity1:
+      name: sensor ảo
       selector:
         entity:
-          domain: switch
+          domain: sensor
     switch_entity2:
-      name: Switch real
+      name: module định vị ô tô
       selector:
         entity:
           domain: switch
@@ -17,12 +17,12 @@ trigger:
   - platform: time_pattern
     seconds: /3
 variables:
-  switch_entity1: !input switch_entity1
+  sensor_entity1: !input sensor_entity1
   switch_entity2: !input switch_entity2
 condition: []
 action:
   - service_template: >
-      {% if (is_state(switch_entity1, "on")) %}  
+      {% if (is_state(sensor_entity1, "on")) %}  
         mqtt.publish
       {% endif %}
     data:
